@@ -7,8 +7,14 @@
     },
     {
         "category": "Transport",
-        "description": "School",
-        "amount": 500.0,
+        "description": "School fare",
+        "amount": 90.0,
         "date": "2025-08-10"
+    },
+    {
+        "category": "Food",
+        "description": "Snacks",
+        "amount": 50.0,
+        "date": "2025-08-20"
     }
 ]
