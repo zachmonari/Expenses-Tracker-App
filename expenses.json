@@ -1,0 +1,14 @@
+[
+    {
+        "category": "Food",
+        "description": "Breakfast",
+        "amount": 100.0,
+        "date": "2025-08-01"
+    },
+    {
+        "category": "Transport",
+        "description": "School",
+        "amount": 500.0,
+        "date": "2025-08-10"
+    }
+]
