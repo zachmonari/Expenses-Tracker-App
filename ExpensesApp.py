@@ -7,7 +7,6 @@ from datetime import datetime
 DATA_FILE = "expenses.json"
 
 
-# Load existing expenses or start with an empty list
 def load_expenses():
     try:
         with open(DATA_FILE, "r") as file:
@@ -16,7 +15,6 @@ def load_expenses():
         return []
 
 
-# Save expenses to file
 def save_expenses(expenses):
     with open(DATA_FILE, "w") as file:
         json.dump(expenses, file, indent=4)
@@ -78,6 +76,67 @@ def total_per_category(expenses):
 
 
 # -----------------------------
+# Edit & Delete Functions
+# -----------------------------
+def edit_expense(expenses):
+    view_expenses(expenses)
+    if not expenses:
+        return
+
+    try:
+        idx = int(input("\nEnter the number of the expense to edit: ")) - 1
+        if idx < 0 or idx >= len(expenses):
+            print("⚠️ Invalid selection.")
+            return
+    except ValueError:
+        print("⚠️ Please enter a valid number.")
+        return
+
+    exp = expenses[idx]
+    print(f"\nEditing: {exp['category']} - {exp['description']} (${exp['amount']}) on {exp['date']}")
+
+    new_category = input(f"New category [{exp['category']}]: ").strip().capitalize() or exp["category"]
+    new_description = input(f"New description [{exp['description']}]: ").strip() or exp["description"]
+
+    try:
+        new_amount = input(f"New amount [{exp['amount']}]: ").strip()
+        new_amount = float(new_amount) if new_amount else exp["amount"]
+    except ValueError:
+        print("⚠️ Invalid amount. Keeping old value.")
+        new_amount = exp["amount"]
+
+    new_date = input(f"New date [{exp['date']}]: ").strip() or exp["date"]
+
+    expenses[idx] = {
+        "category": new_category,
+        "description": new_description,
+        "amount": new_amount,
+        "date": new_date
+    }
+    save_expenses(expenses)
+    print("✅ Expense updated successfully!")
+
+
+def delete_expense(expenses):
+    view_expenses(expenses)
+    if not expenses:
+        return
+
+    try:
+        idx = int(input("\nEnter the number of the expense to delete: ")) - 1
+        if idx < 0 or idx >= len(expenses):
+            print("⚠️ Invalid selection.")
+            return
+    except ValueError:
+        print("⚠️ Please enter a valid number.")
+        return
+
+    deleted = expenses.pop(idx)
+    save_expenses(expenses)
+    print(f"🗑️ Deleted: {deleted['description']} ({deleted['category']}) - ${deleted['amount']:.2f}")
+
+
+# -----------------------------
 # Main Program Loop
 # -----------------------------
 def main():
@@ -88,6 +147,8 @@ def main():
         print("1️⃣  Add Expense")
         print("2️⃣  View All Expenses")
         print("3️⃣  View Total per Category")
+        print("4️⃣  Edit an Expense")
+        print("5️⃣  Delete an Expense")
         print("0️⃣  Exit")
 
         choice = input("Select an option: ").strip()
@@ -98,6 +159,10 @@ def main():
             view_expenses(expenses)
         elif choice == "3":
             total_per_category(expenses)
+        elif choice == "4":
+            edit_expense(expenses)
+        elif choice == "5":
+            delete_expense(expenses)
         elif choice == "0":
             print("👋 Goodbye! Your expenses have been saved.")
             break
