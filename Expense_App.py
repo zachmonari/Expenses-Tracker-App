@@ -74,7 +74,7 @@ with tab2:
     if df.empty:
         st.info("No expenses recorded yet.")
     else:
-        st.dataframe(df, use_container_width=True)
+        st.dataframe(df, width='stretch')
         total_spent = df["amount"].sum()
         st.markdown(f"### 💵 Total Spending: **${total_spent:.2f}**")
 
