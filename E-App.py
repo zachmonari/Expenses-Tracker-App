@@ -10,3 +10,9 @@ from PIL import Image
 logo=Image.open("ZachTechs.jpg")
 st.image(logo, width=150)
 
+# Page configuration
+st.set_page_config(
+    page_title="Personal Expenses Tracker",
+    page_icon="💰",
+    layout="wide"
+)
