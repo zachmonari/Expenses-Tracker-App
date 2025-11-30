@@ -72,3 +72,32 @@ def plot_expenses_by_category():
     ax.pie(category_totals.values, labels=category_totals.index, autopct='%1.1f%%', startangle=90)
     ax.set_title('Expenses by Category')
     return fig
+
+
+def plot_monthly_trend():
+    """Create a line chart of monthly expenses and income"""
+    if st.session_state.expenses.empty:
+        return None
+
+    # Convert date and extract year-month
+    df = st.session_state.expenses.copy()
+    df['Date'] = pd.to_datetime(df['Date'])
+    df['Year-Month'] = df['Date'].dt.to_period('M').astype(str)
+
+    monthly_data = df.groupby(['Year-Month', 'Type'])['Amount'].sum().unstack(fill_value=0)
+
+    fig, ax = plt.subplots(figsize=(10, 6))
+
+    if 'Expense' in monthly_data.columns:
+        ax.plot(monthly_data.index, monthly_data['Expense'], marker='o', label='Expenses', color='red')
+    if 'Income' in monthly_data.columns:
+        ax.plot(monthly_data.index, monthly_data['Income'], marker='o', label='Income', color='green')
+
+    ax.set_title('Monthly Income vs Expenses')
+    ax.set_xlabel('Month')
+    ax.set_ylabel('Amount ($)')
+    ax.legend()
+    ax.tick_params(axis='x', rotation=45)
+    plt.tight_layout()
+
+    return fig
