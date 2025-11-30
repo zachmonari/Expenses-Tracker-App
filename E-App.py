@@ -4,3 +4,9 @@ import datetime
 import matplotlib.pyplot as plt
 import io
 import os
+from PIL import Image
+
+#Logo
+logo=Image.open("ZachTechs.jpg")
+st.image(logo, width=150)
+
