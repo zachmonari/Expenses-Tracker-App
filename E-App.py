@@ -16,3 +16,7 @@ st.set_page_config(
     page_icon="💰",
     layout="wide"
 )
+
+# Initialize session state for data persistence
+if 'expenses' not in st.session_state:
+    st.session_state.expenses = pd.DataFrame(columns=['Date', 'Category', 'Description', 'Amount', 'Type'])
