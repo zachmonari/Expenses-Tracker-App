@@ -35,3 +35,7 @@ def add_expense(date, category, description, amount, expense_type):
     # Convert to DataFrame and concatenate
     new_df = pd.DataFrame([new_entry])
     st.session_state.expenses = pd.concat([st.session_state.expenses, new_df], ignore_index=True)
+
+def delete_expense(index):
+    """Delete an expense by index"""
+    st.session_state.expenses = st.session_state.expenses.drop(index).reset_index(drop=True)
