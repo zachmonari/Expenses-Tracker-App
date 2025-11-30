@@ -54,3 +54,21 @@ def get_summary():
     balance = total_income - total_expenses
 
     return total_income, total_expenses, balance
+
+
+def plot_expenses_by_category():
+    """Create a pie chart of expenses by category"""
+    if st.session_state.expenses.empty:
+        return None
+
+    expenses_df = st.session_state.expenses[st.session_state.expenses['Type'] == 'Expense']
+
+    if expenses_df.empty:
+        return None
+
+    category_totals = expenses_df.groupby('Category')['Amount'].sum()
+
+    fig, ax = plt.subplots(figsize=(8, 6))
+    ax.pie(category_totals.values, labels=category_totals.index, autopct='%1.1f%%', startangle=90)
+    ax.set_title('Expenses by Category')
+    return fig
