@@ -2,8 +2,6 @@ import streamlit as st
 import pandas as pd
 import datetime
 import matplotlib.pyplot as plt
-import io
-import os
 from PIL import Image
 
 #Logo
@@ -95,7 +93,7 @@ def plot_monthly_trend():
 
     ax.set_title('Monthly Income vs Expenses')
     ax.set_xlabel('Month')
-    ax.set_ylabel('Amount ($)')
+    ax.set_ylabel('Amount (KSH)')
     ax.legend()
     ax.tick_params(axis='x', rotation=45)
     plt.tight_layout()
@@ -123,7 +121,7 @@ def main():
 
             category = st.selectbox("Category", categories[expense_type])
             description = st.text_input("Description")
-            amount = st.number_input("Amount ($)", min_value=0.0, step=0.01)
+            amount = st.number_input("Amount (KSH)", min_value=0.0, step=0.01)
 
             submitted = st.form_submit_button("Add Transaction")
 
@@ -140,12 +138,12 @@ def main():
     total_income, total_expenses, balance = get_summary()
 
     with col1:
-        st.metric("Total Income", f"${total_income:,.2f}")
+        st.metric("Total Income", f"KSH. {total_income:,.2f}")
     with col2:
-        st.metric("Total Expenses", f"${total_expenses:,.2f}")
+        st.metric("Total Expenses", f"KSH. {total_expenses:,.2f}")
     with col3:
         balance_color = "normal" if balance >= 0 else "inverse"
-        st.metric("Balance", f"${balance:,.2f}", delta=None, delta_color=balance_color)
+        st.metric("Balance", f"KSH. {balance:,.2f}", delta=None, delta_color=balance_color)
 
     # Charts
     col1, col2 = st.columns(2)
@@ -186,7 +184,7 @@ def main():
                 )
             },
             hide_index=True,
-            use_container_width=True
+            width="stretch"
         )
 
         # Process deletions
@@ -242,3 +240,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+st.markdown("---")
+st.caption("© 2025 Expenses Tracker™ ")
+st.caption("@ Zach Techs ")
