@@ -39,3 +39,18 @@ def add_expense(date, category, description, amount, expense_type):
 def delete_expense(index):
     """Delete an expense by index"""
     st.session_state.expenses = st.session_state.expenses.drop(index).reset_index(drop=True)
+
+
+def get_summary():
+    """Calculate summary statistics"""
+    if st.session_state.expenses.empty:
+        return 0, 0, 0
+
+    expenses = st.session_state.expenses[st.session_state.expenses['Type'] == 'Expense']
+    income = st.session_state.expenses[st.session_state.expenses['Type'] == 'Income']
+
+    total_expenses = expenses['Amount'].sum() if not expenses.empty else 0
+    total_income = income['Amount'].sum() if not income.empty else 0
+    balance = total_income - total_expenses
+
+    return total_income, total_expenses, balance
