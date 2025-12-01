@@ -361,8 +361,8 @@ def main():
     # Initialize database
     init_database()
 
-    st.title("💰 Personal Expense Tracker with Database")
-    st.markdown("Your data is now securely stored in a SQLite database!")
+    st.title("💰 Personal Expense Tracker ")
+    st.markdown("Track your Transactions effortlessly!")
 
     # Sidebar for adding new entries
     with st.sidebar:
@@ -472,7 +472,7 @@ def main():
         # Format for display
         display_df = transactions_df.copy()
         display_df['date'] = display_df['date'].dt.strftime('%Y-%m-%d')
-        display_df['amount'] = display_df['amount'].apply(lambda x: f"${x:,.2f}")
+        display_df['amount'] = display_df['amount'].apply(lambda x: f"Ksh. {x:,.2f}")
         display_df = display_df[['id', 'date', 'type', 'category', 'description', 'amount']]
 
         # Display with edit/delete options
@@ -517,7 +517,8 @@ def main():
                     data=csv_data,
                     file_name=f"expenses_{datetime.date.today()}.csv",
                     mime="text/csv",
-                    use_container_width=True
+                    width="stretch"
+
                 )
 
         with col2:
