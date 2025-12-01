@@ -7,7 +7,7 @@ import sqlite3
 from contextlib import contextmanager
 import os
 
-logo=st.image('ZachTechs.jpg')
+
 # Page configuration
 st.set_page_config(
     page_title="Personal Expense Tracker",
@@ -367,6 +367,7 @@ def main():
 
     # Sidebar for adding new entries
     with st.sidebar:
+        st.sidebar.image("ZachTechs.jpg")
         st.header("➕ Add New Transaction")
 
         with st.form("add_transaction", clear_on_submit=True):
@@ -429,6 +430,9 @@ def main():
                             st.rerun()
                 else:
                     st.info("No categories to delete")
+        st.markdown("---")
+        st.caption("© 2025 Expenses Tracker™ ")
+        st.caption("@ Zach Techs ")
 
     # Main content area
     col1, col2, col3 = st.columns(3)
