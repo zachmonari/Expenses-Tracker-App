@@ -7,6 +7,7 @@ import sqlite3
 from contextlib import contextmanager
 import os
 
+logo=st.image('ZachTechs.jpg')
 # Page configuration
 st.set_page_config(
     page_title="Personal Expense Tracker",
