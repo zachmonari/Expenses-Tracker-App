@@ -94,7 +94,7 @@ def init_database():
         # Set default currency
         cursor.execute('''
             INSERT OR IGNORE INTO settings (key, value) 
-            VALUES ('currency', 'USD')
+            VALUES ('currency', 'KSH')
         ''')
 
         conn.commit()
@@ -227,7 +227,7 @@ def get_monthly_summary():
     with get_db_connection() as conn:
         query = '''
             SELECT 
-                strftime('%Y-%m', date) as month,
+                utctime('%Y-%m', date) as month,
                 type,
                 SUM(amount) as total_amount,
                 COUNT(*) as transaction_count
