@@ -227,7 +227,7 @@ def get_monthly_summary():
     with get_db_connection() as conn:
         query = '''
             SELECT 
-                utctime('%Y-%m', date) as month,
+                strftime('%Y-%m', date) as month,
                 type,
                 SUM(amount) as total_amount,
                 COUNT(*) as transaction_count
