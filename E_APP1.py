@@ -7,6 +7,17 @@ from contextlib import contextmanager
 import os
 
 
+# --- FIX: Register adapters and converters for date & datetime ---
+
+# Convert Python date → SQLite text
+sqlite3.register_adapter(datetime.date, lambda d: d.isoformat())
+sqlite3.register_adapter(datetime.datetime, lambda dt: dt.isoformat(" "))
+
+# Convert SQLite text → Python date/datetime
+sqlite3.register_converter("DATE", lambda s: datetime.date.fromisoformat(s.decode()))
+sqlite3.register_converter("TIMESTAMP", lambda s: datetime.datetime.fromisoformat(s.decode()))
+
+
 # Page configuration
 st.set_page_config(
     page_title="Personal Expense Tracker",
