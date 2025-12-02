@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import datetime
 import matplotlib.pyplot as plt
-import numpy as np
 import sqlite3
 from contextlib import contextmanager
 import os
@@ -266,7 +265,10 @@ def plot_expenses_by_category():
         return None
 
     fig, ax = plt.subplots(figsize=(8, 6))
-    colors = plt.cm.Set3(np.linspace(0, 1, len(expenses_df)))
+    custom_colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7',
+                     '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E9']
+    colors = custom_colors[:len(expenses_df)]
+
 
     wedges, texts, autotexts = ax.pie(
         expenses_df['total_amount'],
