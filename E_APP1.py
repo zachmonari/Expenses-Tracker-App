@@ -495,6 +495,9 @@ def main():
         display_df['amount'] = display_df['amount'].apply(lambda x: f"Ksh. {x:,.2f}")
         display_df = display_df[['id', 'date', 'type', 'category', 'description', 'amount']]
 
+
+
+
         # Display with edit/delete options
         for _, row in display_df.iterrows():
             with st.container():
@@ -524,6 +527,8 @@ def main():
                             if delete_transaction(row['id']):
                                 st.success(f"Transaction #{row['id']} deleted!")
                                 st.rerun()
+
+
 
         # Export options
         st.divider()
