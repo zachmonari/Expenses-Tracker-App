@@ -5,7 +5,7 @@ from streamlit_extras.let_it_rain import rain
 from PIL import Image
 
 logo=Image.open("ZachTechs.jpg")
-st.image(logo, width=300)
+st.image(logo, width=150)
 
 # Page settings
 st.set_page_config(page_title="Merry Christmas 🎄", layout="centered")
@@ -44,3 +44,14 @@ colored_header(
     description="A little gift of love, joy and warm wishes for you ❤️",
     color_name="red-70",
 )
+
+# Personalized message
+st.write("""
+### Dear Candy,  
+This season reminds me of how blessed I am to have you in my life.  
+Thank you for your love, joy, support, and presence.  
+May this Christmas fill your heart with peace and your home with warmth.  
+
+**Wishing you endless happiness, laughter, and magical moments.**  
+With love 🎅❤️  
+""")
