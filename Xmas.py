@@ -84,3 +84,8 @@ if st.button("Click to Open Your Gift"):
     st.balloons()
     st.write("### 🎉 Surprise! You deserve all the joy in the world!")
     st.image("https://images.unsplash.com/photo-1513639725746-c5d3e861f32a")
+
+
+st.markdown("---")
+st.caption("© Xmas App™ | Developed in Python with ❤️ and Streamlit")
+st.caption("@ Zach Techs 2025")
