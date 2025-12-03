@@ -60,13 +60,16 @@ With love 🎅❤️
 st.subheader("✨ Our Beautiful Memories")
 cols = st.columns(3)
 images = [
-    "https://images.unsplash.com/photo-1543007630-9710e4a00a20",
-    "https://images.unsplash.com/photo-1519681393784-d120267933ba",
-    "https://images.unsplash.com/photo-1581287053822-41dff00b7d3a"
+    "Nature1.jpg",
+    "Nature2.jpg",
+    "Nature3.jpg"
+
 ]
+st.write("One of the best days in our lives ️❤️️")
 for i, col in enumerate(cols):
     col.image(images[i], width="stretch")
-
+#Song
+st.audio("PerfectEd.mp3", format="audio/wav", loop=False)
 # Love notes section
 st.subheader("💌 Little Notes for You")
 notes = [
