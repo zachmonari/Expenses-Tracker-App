@@ -55,3 +55,14 @@ May this Christmas fill your heart with peace and your home with warmth.
 **Wishing you endless happiness, laughter, and magical moments.**  
 With love 🎅❤️  
 """)
+
+# Image gallery
+st.subheader("✨ Our Beautiful Memories")
+cols = st.columns(3)
+images = [
+    "https://images.unsplash.com/photo-1543007630-9710e4a00a20",
+    "https://images.unsplash.com/photo-1519681393784-d120267933ba",
+    "https://images.unsplash.com/photo-1581287053822-41dff00b7d3a"
+]
+for i, col in enumerate(cols):
+    col.image(images[i], use_container_width=True)
