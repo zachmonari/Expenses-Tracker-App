@@ -30,3 +30,10 @@ rain(
     falling_speed=5,
     animation_length="infinite"
 )
+
+# Autoplay background music
+st.markdown("""
+<audio autoplay loop>
+    <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/hXKyYVJY0F4j00Uv.mp3" type="audio/mp3">
+</audio>
+""", unsafe_allow_html=True)
