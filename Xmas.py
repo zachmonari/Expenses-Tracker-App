@@ -65,4 +65,15 @@ images = [
     "https://images.unsplash.com/photo-1581287053822-41dff00b7d3a"
 ]
 for i, col in enumerate(cols):
-    col.image(images[i], use_container_width=True)
+    col.image(images[i], width="stretch")
+
+# Love notes section
+st.subheader("💌 Little Notes for You")
+notes = [
+    "You make my world brighter ✨",
+    "Thank you for being you ❤️",
+    "Every day with you is special 🎁",
+    "You are my favourite human 💕"
+]
+note = st.selectbox("Choose a note:", notes)
+st.success(note)
