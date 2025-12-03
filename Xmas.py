@@ -22,3 +22,11 @@ background-attachment: fixed;
 </style>
 """
 st.markdown(page_bg, unsafe_allow_html=True)
+
+# Snow animation
+rain(
+    emoji="❄️",
+    font_size=30,
+    falling_speed=5,
+    animation_length="infinite"
+)
